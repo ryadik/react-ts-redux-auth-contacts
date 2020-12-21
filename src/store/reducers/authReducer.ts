@@ -1,4 +1,10 @@
-import { FETCH_USERS, LOGIN_USER } from '../types';
+import {
+  FETCH_USERS,
+  SET_CURRENT_USER,
+  SET_USER_ISLOGGED,
+  UNSET_CURRENT_USER,
+  UNSET_USER_ISLOGGED
+} from '../types';
 
 const initialState: IState = {
   user: {
@@ -6,12 +12,13 @@ const initialState: IState = {
     login: '',
     password: ''
   },
-  fetchedUsers: []
+  fetchedUsers: [],
+  isLogged: false
 };
 
 export const authReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
-    case LOGIN_USER:
+    case SET_CURRENT_USER:
       return {
         ...state,
         user: {
@@ -20,10 +27,33 @@ export const authReducer = (state = initialState, action: IAction) => {
         }
       };
 
+    case UNSET_CURRENT_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          id: '',
+          login: '',
+          password: ''
+        }
+      };
+
     case FETCH_USERS:
       return {
         ...state,
-        fetchedUsers: [...state.fetchedUsers, action.payload]
+        fetchedUsers: [...action.payload]
+      };
+
+    case SET_USER_ISLOGGED:
+      return {
+        ...state,
+        isLogged: true
+      };
+
+    case UNSET_USER_ISLOGGED:
+      return {
+        ...state,
+        isLogged: false
       };
     default:
       return state;
@@ -46,4 +76,5 @@ interface IState {
     login: string;
     password: string;
   }[];
+  isLogged: boolean;
 }
