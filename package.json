@@ -10,9 +10,11 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "styled-components": "^5.2.1",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
   },
@@ -20,13 +22,28 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "bracketSpacing": true
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,md}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn test"
+    }
   },
   "browserslist": {
     "production": [
@@ -39,5 +56,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
   }
 }
