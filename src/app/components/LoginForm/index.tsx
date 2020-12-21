@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { loginUser } from '../../../store/actions/authActions';
+import { setCurrentUser } from '../../../store/actions/authActions';
 
 import { LoginFormComponent } from './style';
 
@@ -31,7 +31,7 @@ class LoginForm extends React.PureComponent<IProps, IState> {
       password: passForm
     };
 
-    this.props.loginUser(user);
+    this.props.setCurrentUser(user);
 
     this.setState(prev => ({
       ...prev,
@@ -68,11 +68,11 @@ class LoginForm extends React.PureComponent<IProps, IState> {
 }
 
 const mapDispatchToProps = {
-  loginUser
+  setCurrentUser
 };
 
 interface IProps {
-  loginUser: any;
+  setCurrentUser: any;
 }
 
 interface IState {
