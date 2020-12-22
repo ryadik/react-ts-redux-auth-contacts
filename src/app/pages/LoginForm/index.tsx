@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { setCurrentUser } from '../../../store/actions/authActions';
 
+import { Button } from '../../styledComponents/Button';
+import { Input } from '../../styledComponents/Input';
 import { LoginFormComponent } from './style';
 
 class LoginForm extends React.PureComponent<IProps, IState> {
@@ -52,21 +54,21 @@ class LoginForm extends React.PureComponent<IProps, IState> {
         <h1>Авторизация</h1>
 
         <form onSubmit={this.submitHandler}>
-          <input
+          <Input
             type="text"
             placeholder="Логин"
             name="loginForm"
             value={this.state.loginForm}
             onChange={this.changeHandler}
           />
-          <input
+          <Input
             type="password"
             placeholder="Пароль"
             name="passForm"
             value={this.state.passForm}
             onChange={this.changeHandler}
           />
-          <button type="submit">Войти</button>
+          <Button type="submit">Войти</Button>
         </form>
       </LoginFormComponent>
     );
