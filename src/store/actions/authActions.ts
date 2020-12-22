@@ -51,7 +51,7 @@ export function setUserIsLogged() {
 
 export function unSetUserIsLogged() {
   return function(dispatch: any) {
-    dispatch({ type: UNSET_USER_ISLOGGED });
     dispatch(unSetCurrentUser());
+    dispatch({ type: UNSET_USER_ISLOGGED });
   };
 }
