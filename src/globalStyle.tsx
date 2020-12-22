@@ -152,8 +152,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
   
-   button, input, textarea {
+  button, input, textarea {
     font-family: inherit;
+  }
+  
+  img {
+    user-select: none;
   }
 
 `;
