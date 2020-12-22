@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+import { connect } from 'react-redux';
+
 import { RootState } from '../store/rootReducer';
 import { fetchUser, setUserIsLogged } from '../store/actions/authActions';
 
-import LoginForm from './components/LoginForm';
+import LoginForm from './pages/LoginForm';
+import Main from './pages/Main';
 
 import { Container } from './style';
-import { connect } from 'react-redux';
 
 class App extends React.PureComponent<IProps, any> {
   constructor(props: IProps) {
@@ -36,7 +38,11 @@ class App extends React.PureComponent<IProps, any> {
     const { user, fetchedUsers, isLogged } = this.props;
 
     if (isLogged) {
-      return <Container>done</Container>;
+      return (
+        <Container>
+          <Main />
+        </Container>
+      );
     }
 
     this.checkToUserExisting(fetchedUsers, user);
