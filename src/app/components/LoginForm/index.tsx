@@ -16,14 +16,20 @@ class LoginForm extends React.PureComponent<IProps, IState> {
   };
 
   changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    this.setState(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value.trim()
+    }));
   };
 
   submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { loginForm, passForm } = this.state;
-    const {} = this.props;
+
+    if (!loginForm || !passForm) {
+      return;
+    }
 
     const user = {
       id: Date.now().toString(),
