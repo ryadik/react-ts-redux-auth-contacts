@@ -1,5 +1,7 @@
 import {
   FETCH_USERS,
+  GET_CONTACTS,
+  SET_ACTIVE_CONTACT,
   SET_CURRENT_USER,
   SET_USER_ISLOGGED,
   UNSET_CURRENT_USER,
@@ -13,6 +15,8 @@ const initialState: IState = {
     password: ''
   },
   fetchedUsers: [],
+  contacts: [],
+  activeContact: null,
   isLogged: false
 };
 
@@ -44,6 +48,20 @@ export const authReducer = (state = initialState, action: IAction) => {
         fetchedUsers: [...action.payload]
       };
 
+    case GET_CONTACTS:
+      let contacts: IContacts[] = [];
+
+      state.fetchedUsers.forEach(item => {
+        if (state.user.login === item.login) {
+          contacts = item.contacts;
+        }
+      });
+
+      return {
+        ...state,
+        contacts
+      };
+
     case SET_USER_ISLOGGED:
       return {
         ...state,
@@ -55,6 +73,12 @@ export const authReducer = (state = initialState, action: IAction) => {
         ...state,
         isLogged: false
       };
+
+    case SET_ACTIVE_CONTACT:
+      return {
+        ...state,
+        activeContact: action.payload
+      };
     default:
       return state;
   }
@@ -63,6 +87,13 @@ export const authReducer = (state = initialState, action: IAction) => {
 interface IAction {
   type: string;
   payload?: any;
+}
+
+interface IContacts {
+  id: number;
+  name: string;
+  descr: string;
+  imgPath: string;
 }
 
 interface IState {
@@ -75,6 +106,9 @@ interface IState {
     id: string;
     login: string;
     password: string;
+    contacts: IContacts[];
   }[];
+  contacts: IContacts[];
+  activeContact: number | null;
   isLogged: boolean;
 }
