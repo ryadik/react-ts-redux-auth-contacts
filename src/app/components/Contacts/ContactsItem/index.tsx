@@ -1,22 +1,32 @@
 import * as React from 'react';
 
 import { ContactsItemWrapper } from './style';
+import { setActiveContact } from '../../../../store/actions/authActions';
+import { connect } from 'react-redux';
 
 interface IProps {
   data: {
+    id: number;
     name: string;
     descr: string;
     imgPath: string;
   };
-  classes?: string;
+  isActive?: boolean;
+  setActiveContact: any;
 }
 
 const ContactsItem: React.FC<IProps> = ({
-  data: { name, descr, imgPath },
-  classes
+  data: { id, name, descr, imgPath },
+  isActive,
+  setActiveContact
 }) => {
+  const classList = isActive ? 'active' : '';
+
   return (
-    <ContactsItemWrapper className={classes}>
+    <ContactsItemWrapper
+      className={classList}
+      onClick={() => setActiveContact(id)}
+    >
       <div className="bg-color" />
 
       <div className="image">
@@ -31,4 +41,8 @@ const ContactsItem: React.FC<IProps> = ({
   );
 };
 
-export default ContactsItem;
+const mapDispatchToProps = {
+  setActiveContact
+};
+
+export default connect(null, mapDispatchToProps)(ContactsItem);
