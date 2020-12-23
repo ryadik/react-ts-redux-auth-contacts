@@ -1,24 +1,44 @@
 import * as React from 'react';
 import { ContactsWrapper } from './style';
 import ContactsItem from './ContactsItem';
+import { RootState } from '../../../store/rootReducer';
+import { connect } from 'react-redux';
 
-const data = {
-  name: 'Илья Рядинский',
-  descr: 'Программист',
-  imgPath:
-    'https://sun9-6.userapi.com/impf/c858124/v858124180/a58ff/OYIY6I0f-w8.jpg?size=640x637&quality=96&proxy=1&sign=f3f663b69688e2c8a42705aa960f620f&type=album'
-};
+class Contacts extends React.PureComponent<IProps, any> {
+  constructor(props: IProps) {
+    super(props);
+  }
 
-const Contacts: React.FC = () => {
-  return (
-    <ContactsWrapper>
-      <ContactsItem data={data} />
-      <ContactsItem data={data} />
-      <ContactsItem data={data} classes={'active'} />
-      <ContactsItem data={data} />
-      <ContactsItem data={data} />
-    </ContactsWrapper>
-  );
-};
+  render() {
+    const { contacts, activeContact } = this.props;
 
-export default Contacts;
+    return (
+      <ContactsWrapper>
+        {contacts.map(item => (
+          <ContactsItem
+            key={item.id}
+            data={item}
+            isActive={item.id === activeContact && true}
+          />
+        ))}
+      </ContactsWrapper>
+    );
+  }
+}
+
+const mapStateToProps = (state: RootState) => ({
+  contacts: state.auth.contacts,
+  activeContact: state.auth.activeContact
+});
+
+interface IProps {
+  contacts: {
+    id: number;
+    name: string;
+    descr: string;
+    imgPath: string;
+  }[];
+  activeContact: number | null;
+}
+
+export default connect(mapStateToProps)(Contacts);
