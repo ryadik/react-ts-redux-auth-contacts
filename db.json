@@ -3,12 +3,33 @@
     {
       "id": "1",
       "login": "admin",
-      "password": "admin"
+      "password": "admin",
+      "contacts": [
+        {
+          "id": 1,
+          "name": "Илья Рядинский",
+          "descr": "Программист",
+          "imgPath": "https://sun9-33.userapi.com/impf/c858124/v858124180/a591f/168I9bErjB4.jpg?size=640x637&quality=96&proxy=1&sign=1f3b3b3b7603918dfe6f26e443ea2eaa&type=album"
+        },
+        {
+          "id": 2,
+          "name": "Илья Рядинский",
+          "descr": "Программист",
+          "imgPath": "https://sun9-33.userapi.com/impf/c858124/v858124180/a591f/168I9bErjB4.jpg?size=640x637&quality=96&proxy=1&sign=1f3b3b3b7603918dfe6f26e443ea2eaa&type=album"
+        },
+        {
+          "id": 3,
+          "name": "Илья Рядинский",
+          "descr": "Программист",
+          "imgPath": "https://sun9-33.userapi.com/impf/c858124/v858124180/a591f/168I9bErjB4.jpg?size=640x637&quality=96&proxy=1&sign=1f3b3b3b7603918dfe6f26e443ea2eaa&type=album"
+        }
+      ]
     },
     {
       "id": "2",
       "login": "root",
-      "password": "123456"
+      "password": "123456",
+      "contacts": []
     }
   ]
 }
