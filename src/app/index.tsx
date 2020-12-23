@@ -68,6 +68,12 @@ interface IUser {
   id: string;
   login: string;
   password: string;
+  contacts?: {
+    id: number;
+    name: string;
+    descr: string;
+    imgPath: string;
+  }[];
 }
 
 const mapStateToProps = (state: RootState) => ({
