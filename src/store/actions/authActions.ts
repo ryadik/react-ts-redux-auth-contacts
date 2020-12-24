@@ -3,9 +3,7 @@ import {
   SET_CURRENT_USER,
   UNSET_CURRENT_USER,
   SET_USER_ISLOGGED,
-  UNSET_USER_ISLOGGED,
-  GET_CONTACTS,
-  SET_ACTIVE_CONTACT
+  UNSET_USER_ISLOGGED
 } from '../types';
 
 interface IUser {
@@ -24,12 +22,6 @@ export function setCurrentUser(payload: IUser) {
 export function unSetCurrentUser() {
   return {
     type: UNSET_CURRENT_USER
-  };
-}
-
-export function getContacts() {
-  return {
-    type: GET_CONTACTS
   };
 }
 
@@ -56,7 +48,6 @@ export function setUserIsLogged() {
     dispatch({
       type: SET_USER_ISLOGGED
     });
-    dispatch(getContacts());
   };
 }
 
@@ -64,12 +55,5 @@ export function unSetUserIsLogged() {
   return function(dispatch: any) {
     dispatch(unSetCurrentUser());
     dispatch({ type: UNSET_USER_ISLOGGED });
-  };
-}
-
-export function setActiveContact(id: number) {
-  return {
-    type: SET_ACTIVE_CONTACT,
-    payload: id
   };
 }
