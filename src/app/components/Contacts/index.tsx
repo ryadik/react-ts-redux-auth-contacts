@@ -68,8 +68,8 @@ class Contacts extends React.PureComponent<IProps, IState> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  contacts: state.auth.contacts,
-  activeContact: state.auth.activeContact
+  contacts: state.contacts.contacts,
+  activeContact: state.contacts.activeContact
 });
 
 interface IContacts {

@@ -1,19 +1,8 @@
 import * as React from 'react';
 
 import { ContactsItemWrapper } from './style';
-import { setActiveContact } from '../../../../store/actions/authActions';
+import { setActiveContact } from '../../../../store/actions/contactsActions';
 import { connect } from 'react-redux';
-
-interface IProps {
-  data: {
-    id: number;
-    name: string;
-    descr: string;
-    imgPath: string;
-  };
-  isActive?: boolean;
-  setActiveContact: any;
-}
 
 const ContactsItem: React.FC<IProps> = ({
   data: { id, name, descr, imgPath },
@@ -40,6 +29,17 @@ const ContactsItem: React.FC<IProps> = ({
     </ContactsItemWrapper>
   );
 };
+
+interface IProps {
+  data: {
+    id: number;
+    name: string;
+    descr: string;
+    imgPath: string;
+  };
+  isActive?: boolean;
+  setActiveContact: any;
+}
 
 const mapDispatchToProps = {
   setActiveContact

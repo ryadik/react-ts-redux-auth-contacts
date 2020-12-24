@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../store/rootReducer';
 import { fetchUser, setUserIsLogged } from '../store/actions/authActions';
+import { getContacts } from '../store/actions/contactsActions';
 
 import LoginForm from './pages/LoginForm';
 import Main from './pages/Main';
@@ -30,6 +31,7 @@ class App extends React.PureComponent<IProps, any> {
       }
 
       this.props.setUserIsLogged();
+      this.props.getContacts(usersArr[i].contacts);
       break;
     }
   };
@@ -62,6 +64,7 @@ interface IProps {
 
   fetchUser: any;
   setUserIsLogged: any;
+  getContacts: any;
 }
 
 interface IUser {
@@ -84,7 +87,8 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   fetchUser,
-  setUserIsLogged
+  setUserIsLogged,
+  getContacts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
