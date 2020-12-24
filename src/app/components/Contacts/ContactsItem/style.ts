@@ -48,7 +48,6 @@ export const ContactsItemWrapper = styled.div`
     }
 
     background-size: 100%;
-    filter: ${shadowBtn};
     color: #fff;
   }
 

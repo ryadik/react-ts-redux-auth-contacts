@@ -6,6 +6,7 @@ export const ContactsWrapper = styled.div`
   width: 30%;
 
   header {
+    padding-top: 10px;
     margin-bottom: 15px;
     border-bottom: 1px solid #ec008c;
 
@@ -40,5 +41,11 @@ export const ContactsWrapper = styled.div`
 
       padding: 10px 0;
     }
+  }
+
+  div.contacts {
+    height: 100%;
+    max-height: 510px;
+    overflow-y: auto;
   }
 `;

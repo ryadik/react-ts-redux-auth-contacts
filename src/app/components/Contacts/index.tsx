@@ -54,14 +54,15 @@ class Contacts extends React.PureComponent<IProps, IState> {
             />
           </div>
         </header>
-
-        {filteredContacts.map(item => (
-          <ContactsItem
-            key={item.id}
-            data={item}
-            isActive={item.id === activeContact && true}
-          />
-        ))}
+        <div className="contacts">
+          {filteredContacts.map(item => (
+            <ContactsItem
+              key={item.id}
+              data={item}
+              isActive={item.id === activeContact && true}
+            />
+          ))}
+        </div>
       </ContactsWrapper>
     );
   }
