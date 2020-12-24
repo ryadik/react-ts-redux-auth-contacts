@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { greenGradient180, redGradient180 } from './app/variables';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -162,21 +161,19 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 15px;
+    width: 6px;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    background: #E6E6E6;
   }
 
   ::-webkit-scrollbar-track {
   }
 
   ::-webkit-scrollbar-thumb {
-    border-left: 10px solid #fff;
-    width: 5px;
-    background-color: rgba(252, 103, 103, 0.3);
-    transition: background-color 0.15s linear;
-
-    &:hover {
-      background-color: rgba(252, 103, 103, 0.6);
-    }
+    width: 6px;
+    border-radius: 6px;
+    background: #828282;
   }
 
 `;
