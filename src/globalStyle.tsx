@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+import { greenGradient180, redGradient180 } from './app/variables';
 
-const GlobalStyle = createGlobalStyle`          
+const GlobalStyle = createGlobalStyle`
   html,
   body,
   div,
@@ -89,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     vertical-align: baseline;
   }
-  
+
   body {
     overflow-x: hidden;
   }
@@ -136,7 +137,7 @@ const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
-  
+
   a {
     text-decoration: none;
     cursor: pointer;
@@ -151,13 +152,31 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
-  
+
   button, input, textarea {
     font-family: inherit;
   }
-  
+
   img {
     user-select: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-left: 10px solid #fff;
+    width: 5px;
+    background-color: rgba(252, 103, 103, 0.3);
+    transition: background-color 0.15s linear;
+
+    &:hover {
+      background-color: rgba(252, 103, 103, 0.6);
+    }
   }
 
 `;
