@@ -34,7 +34,7 @@ const ContactsItem: React.FC<IProps> = ({
       </div>
 
       <div className="info">
-        <h2>{name}</h2>
+        <h3>{name}</h3>
         <p>{descr}</p>
       </div>
     </ContactsItemWrapper>

@@ -65,7 +65,7 @@ export const ContactsItemWrapper = styled.div`
   }
 
   div.info {
-    h2 {
+    h3 {
       font-weight: bold;
     }
   }
