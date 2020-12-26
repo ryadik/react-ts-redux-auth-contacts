@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { grayFade, redGradient90, shadowBtn } from '../../../variables';
+import { grayFade, redGradient90 } from '../../../variables';
 
 export const ContactsItemWrapper = styled.div`
   position: relative;
   z-index: 5;
 
   cursor: pointer;
-  width: 100%;
+  width: 95%;
 
   padding: 15px;
   margin: 0 0 15px;
