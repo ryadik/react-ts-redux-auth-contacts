@@ -1,9 +1,33 @@
 import * as React from 'react';
-import { ContactsWrapper } from './style';
-import ContactsItem from './ContactsItem';
-import { RootState } from '../../../store/rootReducer';
 import { connect } from 'react-redux';
+
+import NewContact from './NewContact';
+import ContactsItem from './ContactsItem';
+
+import { ContactsWrapper } from './style';
 import { Input } from '../../styledComponents/Input';
+import { Button } from '../../styledComponents/Button';
+
+import { RootState } from '../../../store/rootReducer';
+import { setActiveContactForm } from '../../../store/actions/contactsActions';
+
+const ContactsRender: React.FC<IPropsContactsRender> = ({
+  array,
+  activeContact
+}) => (
+  <div className="contacts">
+    {array.length > 0 &&
+      array.map(item => (
+        <ContactsItem
+          key={item.id}
+          data={item}
+          isActive={item.id === activeContact && true}
+        />
+      ))}
+
+    {array.length === 0 && <span>Список контактов пуст</span>}
+  </div>
+);
 
 class Contacts extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
@@ -30,7 +54,12 @@ class Contacts extends React.PureComponent<IProps, IState> {
   };
 
   render() {
-    const { contacts, activeContact } = this.props;
+    const {
+      contacts,
+      activeContact,
+      activeContactForm,
+      setActiveContactForm
+    } = this.props;
     const { searchValue } = this.state;
 
     const filteredContacts = searchValue
@@ -40,11 +69,13 @@ class Contacts extends React.PureComponent<IProps, IState> {
     return (
       <ContactsWrapper>
         <header>
-          <div className="top">
+          <div className="title">
             <h2>Контакты</h2>
+
+            <Button onClick={() => setActiveContactForm()}>+</Button>
           </div>
 
-          <div className="bottom">
+          <div className="search">
             <Input
               type="text"
               placeholder="Поиск"
@@ -54,15 +85,15 @@ class Contacts extends React.PureComponent<IProps, IState> {
             />
           </div>
         </header>
-        <div className="contacts">
-          {filteredContacts.map(item => (
-            <ContactsItem
-              key={item.id}
-              data={item}
-              isActive={item.id === activeContact && true}
-            />
-          ))}
-        </div>
+
+        {activeContactForm ? (
+          <NewContact />
+        ) : (
+          <ContactsRender
+            array={filteredContacts}
+            activeContact={activeContact}
+          />
+        )}
       </ContactsWrapper>
     );
   }
@@ -70,8 +101,13 @@ class Contacts extends React.PureComponent<IProps, IState> {
 
 const mapStateToProps = (state: RootState) => ({
   contacts: state.contacts.contacts,
-  activeContact: state.contacts.activeContact
+  activeContact: state.contacts.activeContact,
+  activeContactForm: state.contacts.activeAddContactForm
 });
+
+const mapDispatchToProps = {
+  setActiveContactForm
+};
 
 interface IContacts {
   id: number;
@@ -83,10 +119,17 @@ interface IContacts {
 interface IProps {
   contacts: IContacts[];
   activeContact: number | null;
+  activeContactForm: boolean;
+  setActiveContactForm: any;
+}
+
+interface IPropsContactsRender {
+  array: IContacts[];
+  activeContact: number | null;
 }
 
 interface IState {
   searchValue: string;
 }
 
-export default connect(mapStateToProps)(Contacts);
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
