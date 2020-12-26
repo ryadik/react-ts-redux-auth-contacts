@@ -1,3 +1,4 @@
+import { url } from '../../app/variables';
 import {
   FETCH_USERS,
   SET_CURRENT_USER,
@@ -28,9 +29,7 @@ export function unSetCurrentUser() {
 export function fetchUser() {
   return async function(dispatch: any) {
     try {
-      const url = 'http://localhost:3001/users';
-
-      const res = await fetch(url);
+      const res = await fetch(`${url}users`);
       const json = await res.json();
 
       dispatch({
