@@ -110,7 +110,7 @@ const mapDispatchToProps = {
 };
 
 interface IContacts {
-  id: number;
+  id: string;
   name: string;
   descr: string;
   imgPath: string;
@@ -118,14 +118,14 @@ interface IContacts {
 
 interface IProps {
   contacts: IContacts[];
-  activeContact: number | null;
+  activeContact: string | null;
   activeContactForm: boolean;
   setActiveContactForm: any;
 }
 
 interface IPropsContactsRender {
   array: IContacts[];
-  activeContact: number | null;
+  activeContact: string | null;
 }
 
 interface IState {
