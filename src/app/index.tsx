@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../store/rootReducer';
 import { fetchUser, setUserIsLogged } from '../store/actions/authActions';
-import { getContacts } from '../store/actions/contactsActions';
+import {
+  getContacts,
+  setActiveContact
+} from '../store/actions/contactsActions';
 
 import LoginForm from './pages/LoginForm';
 import Main from './pages/Main';
@@ -16,8 +19,19 @@ class App extends React.PureComponent<IProps, any> {
     super(props);
   }
 
+  escapeHandler = (e: KeyboardEvent) => {
+    if (e.code === 'Escape' && e.key === 'Escape') {
+      this.props.setActiveContact(null);
+    }
+  };
+
   componentDidMount() {
     this.props.fetchUser();
+    window.addEventListener('keydown', this.escapeHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.escapeHandler);
   }
 
   checkToUserExisting = (usersArr: IUser[], userItem: IUser): void => {
@@ -65,6 +79,7 @@ interface IProps {
   fetchUser: any;
   setUserIsLogged: any;
   getContacts: any;
+  setActiveContact: any;
 }
 
 interface IUser {
@@ -72,7 +87,7 @@ interface IUser {
   login: string;
   password: string;
   contacts?: {
-    id: number;
+    id: string;
     name: string;
     descr: string;
     imgPath: string;
@@ -88,7 +103,8 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = {
   fetchUser,
   setUserIsLogged,
-  getContacts
+  getContacts,
+  setActiveContact
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
