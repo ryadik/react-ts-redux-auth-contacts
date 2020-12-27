@@ -1,11 +1,22 @@
 import { url } from '../../app/variables';
 import {
   ADD_CONTACT,
+  DELETE_CONTACT,
   GET_CONTACTS,
   SET_ACTIVE_ADD_CONTACT_FORM,
   SET_ACTIVE_CONTACT,
   UNSET_ACTIVE_ADD_CONTACT_FORM
 } from '../types';
+
+async function getUserByLogin(userName: string) {
+  const users = await fetch(`${url}users`);
+  const usersParsed: IFetchedUser[] = await users.json();
+  const filteredUser: IFetchedUser[] = usersParsed.filter(
+    item => item.login === userName
+  );
+
+  return filteredUser[0];
+}
 
 export function getContacts(contacts: IContacts[]) {
   return {
@@ -14,7 +25,7 @@ export function getContacts(contacts: IContacts[]) {
   };
 }
 
-export function setActiveContact(id: number) {
+export function setActiveContact(id: string | null) {
   return {
     type: SET_ACTIVE_CONTACT,
     payload: id
@@ -36,24 +47,51 @@ export function unSetActiveContactForm() {
 export function addContact(userName: string, contact: IContacts) {
   return async function(dispatch: any) {
     try {
-      const users = await fetch(`${url}users`);
-      const usersParsed: IFetchedUser[] = await users.json();
-      const filteredUser = usersParsed.filter(item => item.login === userName);
+      getUserByLogin(userName).then(async filteredUser => {
+        filteredUser.contacts.push(contact);
 
-      filteredUser[0].contacts.push(contact);
-
-      const res = await fetch(`${url}users/${filteredUser[0].id}`, {
-        method: 'PATCH',
-        body: JSON.stringify(filteredUser[0]),
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      if (res.ok) {
-        dispatch({
-          type: ADD_CONTACT,
-          payload: contact
+        const res = await fetch(`${url}users/${filteredUser.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify(filteredUser),
+          headers: { 'Content-Type': 'application/json' }
         });
-      }
+
+        if (res.ok) {
+          dispatch({
+            type: ADD_CONTACT,
+            payload: contact
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
+export function deleteContact(userName: string, contactID: string) {
+  return async function(dispatch: any) {
+    try {
+      getUserByLogin(userName).then(async filteredUser => {
+        const filteredContacts: IContacts[] = filteredUser.contacts.filter(
+          item => item.id !== contactID
+        );
+
+        filteredUser.contacts = filteredContacts;
+
+        const res = await fetch(`${url}users/${filteredUser.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify(filteredUser),
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (res.ok) {
+          dispatch({
+            type: DELETE_CONTACT,
+            payload: filteredContacts
+          });
+        }
+      });
     } catch (e) {
       console.log(e);
     }
@@ -61,7 +99,7 @@ export function addContact(userName: string, contact: IContacts) {
 }
 
 interface IContacts {
-  id: number;
+  id: string;
   name: string;
   decr: string;
   imgPath: string;
