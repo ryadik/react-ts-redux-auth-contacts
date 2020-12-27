@@ -32,7 +32,7 @@ const ContactsItem: React.FC<IProps> = ({
 
 interface IProps {
   data: {
-    id: number;
+    id: string;
     name: string;
     descr: string;
     imgPath: string;
