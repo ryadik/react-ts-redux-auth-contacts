@@ -1,5 +1,6 @@
 import {
   ADD_CONTACT,
+  DELETE_CONTACT,
   GET_CONTACTS,
   SET_ACTIVE_ADD_CONTACT_FORM,
   SET_ACTIVE_CONTACT,
@@ -43,6 +44,12 @@ export const contactsReducer = (state = initialState, action: IAction) => {
         ...state,
         contacts: [...state.contacts, action.payload]
       };
+
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: action.payload
+      };
     default:
       return state;
   }
@@ -54,7 +61,7 @@ interface IAction {
 }
 
 interface IContacts {
-  id: number;
+  id: string;
   name: string;
   descr: string;
   imgPath: string;
@@ -62,6 +69,6 @@ interface IContacts {
 
 interface IState {
   contacts: IContacts[];
-  activeContact: number | null;
+  activeContact: string | null;
   activeAddContactForm: boolean;
 }
