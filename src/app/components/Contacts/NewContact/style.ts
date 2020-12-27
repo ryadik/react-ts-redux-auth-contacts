@@ -33,8 +33,9 @@ export const NewContactWrapper = styled.form`
 
     ${Button} {
       width: 48%;
-      height: 50px;
+      height: 45px;
 
+      filter: unset;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
       background: ${redGradient90} no-repeat;
       background-size: 0px;
