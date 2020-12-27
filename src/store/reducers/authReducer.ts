@@ -67,7 +67,7 @@ interface IAction {
 }
 
 interface IContacts {
-  id: number;
+  id: string;
   name: string;
   descr: string;
   imgPath: string;
