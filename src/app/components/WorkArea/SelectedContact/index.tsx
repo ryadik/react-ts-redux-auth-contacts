@@ -2,30 +2,17 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { RootState } from '../../../../store/rootReducer';
-import { deleteContact } from '../../../../store/actions/contactsActions';
 
-import { SelectedContactWrapper } from './style';
-import { Button } from '../../../styledComponents/Button';
+import ViewMode from './ViewMode';
+import EditMode from './EditMode';
 
-const SelectedContact: React.FC<IProps> = ({
-  data: { id, name, descr, imgPath },
-  userName,
-  deleteContact
-}) => (
-  <SelectedContactWrapper>
-    <div className="image">
-      <img src={imgPath} alt="user avatar" />
-    </div>
+const SelectedContact: React.FC<IProps> = ({ data, editMode }) => {
+  if (editMode) {
+    return <EditMode data={data} />;
+  }
 
-    <h3>{name}</h3>
-    <p>{descr}</p>
-
-    <div className="control">
-      <Button className="edit">Редактировать</Button>
-      <Button onClick={() => deleteContact(userName, id)}>Удалить</Button>
-    </div>
-  </SelectedContactWrapper>
-);
+  return <ViewMode data={data} />;
+};
 
 interface IProps {
   data: {
@@ -35,16 +22,11 @@ interface IProps {
     imgPath: string;
   };
 
-  userName: string;
-  deleteContact: any;
+  editMode?: boolean;
 }
 
 const mapStateToProps = (state: RootState) => ({
-  userName: state.auth.user.login
+  editMode: state.contacts.editMode
 });
 
-const mapDispatchToProps = {
-  deleteContact
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SelectedContact);
+export default connect(mapStateToProps, null)(SelectedContact);
