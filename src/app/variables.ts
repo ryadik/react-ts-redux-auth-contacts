@@ -18,7 +18,6 @@ export const redGradient180 =
 export const grayFade =
   'linear-gradient(90deg, #e7e7e7 0%, rgba(0, 0, 0, 0) 88.75%)';
 
-
 // other
 
 export const url = 'http://localhost:3001/';
