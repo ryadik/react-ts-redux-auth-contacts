@@ -2,10 +2,13 @@ import { url } from '../../app/variables';
 import {
   ADD_CONTACT,
   DELETE_CONTACT,
+  DISABLE_EDIT_MODE,
+  ENABLE_EDIT_MODE,
   GET_CONTACTS,
   SET_ACTIVE_ADD_CONTACT_FORM,
   SET_ACTIVE_CONTACT,
-  UNSET_ACTIVE_ADD_CONTACT_FORM
+  UNSET_ACTIVE_ADD_CONTACT_FORM,
+  UPDATE_CONTACT
 } from '../types';
 
 async function getUserByLogin(userName: string) {
@@ -69,6 +72,40 @@ export function addContact(userName: string, contact: IContacts) {
   };
 }
 
+export function updateContact(userName: string, contact: IContacts) {
+  return async function(dispatch: any) {
+    try {
+      getUserByLogin(userName).then(async filteredUser => {
+        console.log(' before: ', filteredUser);
+        for (let i = 0; i < filteredUser.contacts.length; i++) {
+          if (filteredUser.contacts[i].id === contact.id) {
+            filteredUser.contacts[i] = {
+              ...filteredUser.contacts[i],
+              ...contact
+            };
+          }
+        }
+        console.log(' after: ', filteredUser);
+
+        const res = await fetch(`${url}users/${filteredUser.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify(filteredUser),
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (res.ok) {
+          dispatch({
+            type: UPDATE_CONTACT,
+            payload: filteredUser.contacts
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
 export function deleteContact(userName: string, contactID: string) {
   return async function(dispatch: any) {
     try {
@@ -98,10 +135,22 @@ export function deleteContact(userName: string, contactID: string) {
   };
 }
 
+export function enableEditMode() {
+  return {
+    type: ENABLE_EDIT_MODE
+  };
+}
+
+export function disableEditMode() {
+  return {
+    type: DISABLE_EDIT_MODE
+  };
+}
+
 interface IContacts {
   id: string;
   name: string;
-  decr: string;
+  descr: string;
   imgPath: string;
 }
 
