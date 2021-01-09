@@ -6,8 +6,9 @@ import {
   GET_CONTACTS,
   SET_ACTIVE_ADD_CONTACT_FORM,
   SET_ACTIVE_CONTACT,
-  UNSET_ACTIVE_ADD_CONTACT_FORM, UPDATE_CONTACT
-} from "../types";
+  UNSET_ACTIVE_ADD_CONTACT_FORM,
+  UPDATE_CONTACT
+} from '../types';
 
 const initialState: IState = {
   contacts: [],
