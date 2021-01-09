@@ -19,6 +19,8 @@ export const EditModeWrapper = styled.div`
     max-width: 250px;
     font-size: 16px;
     line-height: 19px;
+    text-align: center;
+
     color: #a09e9e;
 
     margin-bottom: 15px;

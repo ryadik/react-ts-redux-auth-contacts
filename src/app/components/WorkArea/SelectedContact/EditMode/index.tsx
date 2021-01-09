@@ -56,7 +56,7 @@ class EditMode extends React.PureComponent<IProps, IState> {
 
     return (
       <EditModeWrapper>
-        <h2>Редактирование контакта</h2>
+        <h3>Редактирование контакта</h3>
         <p>
           Если Вы не хотетите изменять некоторые из полей, оставьте их пустыми.
         </p>
@@ -86,7 +86,7 @@ class EditMode extends React.PureComponent<IProps, IState> {
 
           <div>
             <Button type="submit" className="submit">
-              Создать
+              Сохранить
             </Button>
             <Button type="button" onClick={this.props.disableEditMode}>
               Отмена
