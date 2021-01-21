@@ -1,46 +1,44 @@
-# Getting Started with Create React Index
+# Менеджер контактов (в разработке)
+Приложение является менеджером ваших контактов. Вы можете зайти под своим пользователем или создать нового. После входа, вас перенаправит на страницу менеджера.\
+Интерфейс менеджера состоит из двух частей:\ 
+* зона контактов
+* зона действия (рабочий стол)
+В зоне контактов отображаются ваши контакты, если контактов ещё нет, то вы можете нажать на плюсик в правом верхнем углу. Откороется форма, после заполнения которой ваш контакт отобразится в списке.\
+При нажатии на контакт, он открывается в зоне действий, где показана информация о нем (контакте). В зоне действий вы можете удалить контакт, по нажатию кнопки "Удалить" или отредактировать контакт, при нажатии кнопки "Редактировать". При редактировании контакта, открывается форма, после заполнения и откправки которой, изменения применятся, и Ваш контакт обновится.\
+Если Вы хотите завершить работу с приложением, нажмите на красный кнопку в левом верхнем углу.
 
-This project was bootstrapped with [Create React Index](https://github.com/facebook/create-react-app).
+## От себя
+Это приложение является новой версией моего старого приложения, написанного 5 месяцев назад. Старое приложение находится [https://github.com/K1nGsmaN-hub/react-auth-contacts](тут)\
+Старое приложение было написанно, в качестве тестового задания одной из компаний, куда я подавал резюме. Тогда оно мне очень понравилось и недавно, я решил переписать его, с новыми знаниями и технологиями.\
+Итак, в это приложении используются технологии: `ReactJS`, `TypeScript`, `Redux`, `Redux-thunk`, `Redux-saga`, `StyledComponent`, `React-router`
 
-## Available Scripts
+Проект был создан с использование утилиты **`create-react-app`**
 
-In the project directory, you can run:
+Это мой первый опыт написания документации, к своему проекту, если есть замечания, кидайте pull request'ы. (Документация ещё не полная)
 
+## Инициализация проекта
+
+Перед запуском проекта, откройте терминал в папке с проектом и введите:
+
+### `yarn`
+
+В проекте используется утилита **`json-server`**, если она у Вас не установлена, введите в терминал:
+
+Для глобальной установки ( [ ] - необязательный параметр):
+### `[sudo] npm i -g json-server`
+
+Для установки внутри проекта, из папки с проектом, введите в терминал:
+### `yarn add json-server`
+
+## Запуск проекта
+
+**Для старта проекта необходимо открыть два окна с терминалом в папке с проектом!**
+
+В-первом окне с терминалом, вводим:
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Во-втором окне с терминалом, вводим:
+### `json-server db.json --port 3001`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Проект откроется в режиме разработки по адресу [http://localhost:3000](http://localhost:3000)
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React Index documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
