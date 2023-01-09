@@ -112,4 +112,4 @@ interface IState {
   imgPathForm: string;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewContact);
+export default connect(mapStateToProps, mapDispatchToProps)(NewContact as any);

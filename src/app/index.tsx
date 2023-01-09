@@ -54,6 +54,8 @@ class App extends React.PureComponent<IProps, any> {
     const { user, fetchedUsers, isLogged } = this.props;
 
     if (isLogged) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       return (
         <Container>
           <Main />
@@ -107,4 +109,4 @@ const mapDispatchToProps = {
   setActiveContact
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App as any);

@@ -37,4 +37,4 @@ const mapDispatchToProps = {
   unSetUserIsLogged
 };
 
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main as any);

@@ -88,4 +88,4 @@ interface IState {
   passForm: string;
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm as any);

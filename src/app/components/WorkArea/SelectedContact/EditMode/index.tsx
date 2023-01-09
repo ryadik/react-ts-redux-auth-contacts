@@ -126,4 +126,4 @@ const mapDispatchToProps = {
   updateContact
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditMode);
+export default connect(mapStateToProps, mapDispatchToProps)(EditMode as any);

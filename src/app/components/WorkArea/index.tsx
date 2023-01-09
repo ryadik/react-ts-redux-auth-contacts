@@ -24,11 +24,15 @@ class WorkArea extends React.PureComponent<IProps, any> {
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return (
       <WorkAreaWrapper>
         {contacts !== undefined &&
           contacts.map(item => {
             if (item.id === activeContact) {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               return <SelectedContact key={item.id} data={item} />;
             }
           })}
@@ -55,4 +59,4 @@ interface IProps {
   activeContact?: string | null;
 }
 
-export default connect(mapStateToProps, null)(WorkArea);
+export default connect(mapStateToProps, null)(WorkArea as any);

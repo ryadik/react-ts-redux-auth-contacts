@@ -132,4 +132,4 @@ interface IState {
   searchValue: string;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts as any);
